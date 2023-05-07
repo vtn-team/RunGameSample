@@ -9,9 +9,10 @@ public class ItemGenerate : MonoBehaviour
 
     private void Awake()
     {
-        //TODO
-        //Unity-2： アイテムを等間隔に生成せよ
-        //https://candle-stoplight-544.notion.site/Unity-2-08e8ea217a014bfa963fa96572b7a9cb
-
+        for (int i = 0; i < 19; i++)
+        {
+            var item = Instantiate(_itemPrefab, _root);
+            item.transform.position = new Vector3(0, 1, i * -5 - 5);
+        }
     }
 }
