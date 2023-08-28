@@ -5,6 +5,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     [SerializeField] Rigidbody _rigidBody;
+    [SerializeField] float _speed = 5.0f;
     bool isStop = false;
 
     void Awake()
@@ -15,17 +16,17 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO
-        //Unity-1: 移動せよ
-        //https://candle-stoplight-544.notion.site/Unity-1-4e021f226d584730b715626436ccc330
         if (isStop == false)
         {
-            _rigidBody.velocity = new Vector3(-Input.GetAxis("Horizontal"), 0, -10);
+            _rigidBody.velocity = new Vector3(-Input.GetAxis("Horizontal") * _speed, 0, -10);
         }
         else
         {
             _rigidBody.velocity = new Vector3(0, 0, 0);
         }
+
+        if (transform.position.x < -5) transform.position = new Vector3(-5, transform.position.y, transform.position.z);
+        if (transform.position.x > 5) transform.position = new Vector3(5, transform.position.y, transform.position.z);
     }
 
     private void OnCollisionEnter(Collision collision)
